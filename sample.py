@@ -1,4 +1,3 @@
-# Ten-line Python program with an intentional error
 def add_numbers(a, b):
     return a + b
 
