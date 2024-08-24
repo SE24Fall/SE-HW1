@@ -1,8 +1,8 @@
 def add_numbers(a, b):
-    return a + b + b
+    return a + b
 
 def multiply_numbers(x, y):
-    return 2*x * y * y
+    return x * y
 
 
 result1 = add_numbers(10, 5)
