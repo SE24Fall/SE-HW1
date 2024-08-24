@@ -9,5 +9,4 @@ result1 = add_numbers(10, 5)
 result2 = multiply_numbers(4, 7)
 
 print("Sum:", result1)
-print("Product:" result2)  
-
+print("Product:", result2)
