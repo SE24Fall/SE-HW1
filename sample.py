@@ -2,7 +2,7 @@ def add_numbers(a, b):
     return a + b
 
 def multiply_numbers(x, y):
-    return x * y
+    return x * y * y
 
 
 result1 = add_numbers(10, 5)
