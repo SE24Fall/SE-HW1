@@ -31,4 +31,4 @@ jobs:
       - name: Test with pytest
         run: |
           pip install pytest
-          pytest test_cases.py
+          pytest test_cases.py --doctest-modules --junitxml=junit/test-results.xml
