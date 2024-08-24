@@ -1,5 +1,5 @@
 def add_numbers(a, b):
-    return a + b
+    return a + b + b
 
 def multiply_numbers(x, y):
     return x * y * y
