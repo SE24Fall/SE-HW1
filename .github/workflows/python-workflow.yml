@@ -73,13 +73,17 @@ jobs:
           pip install pytest pytest-cov                
         # flake8
   #        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+      - name: Test with pytest
+        run: |
+          pip install pytest pytest-cov
+          pytest test_cases.py --cov --cov-report=html
+      
       - name: Build coverage file
         run: |
           pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=app tests/ | tee pytest-coverage.txt
 
       - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@main
+        uses: SE24Fall/SE-HW1@main
         with:
           pytest-coverage-path: ./pytest-coverage.txt
-          junitxml-path: ./pytest.xml
+      #    junitxml-path: ./pytest.xml
