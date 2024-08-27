@@ -39,11 +39,11 @@ jobs:
           name: coverage-report
           path: htmlcov
 
-      - name: Pytest coverage comment
-        uses: SE24Fall/SE-HW1@main
-        with:
-          pytest-coverage-path: ./pytest-coverage.txt
-          junitxml-path: ./pytest.xml
+      # - name: Pytest coverage comment
+      #   uses: SE24Fall/SE-HW1@main
+      #   with:
+      #     pytest-coverage-path: ./pytest-coverage.txt
+      #     junitxml-path: ./pytest.xml
 
 
 
