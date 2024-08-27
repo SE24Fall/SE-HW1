@@ -28,5 +28,5 @@ jobs:
           python-version: '3.x'
       - name: Test with pytest
         run: |
-          pip install pytest
-          pytest test_cases.py
+          pip install pytest pytest-cov
+          pytest test_cases.py --cov --cov-report=html
