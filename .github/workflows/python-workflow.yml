@@ -38,10 +38,12 @@ jobs:
         run: |
           pytest test_cases.py
       - name: Code coverage using coverage.py
+        if: success() || failure()
         run: |
           coverage run sample.py
           coverage lcov
       - name: Upload to coveralls
+        if: success() || failure()
         uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
