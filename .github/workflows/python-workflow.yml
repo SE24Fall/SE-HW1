@@ -34,11 +34,14 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pytest coverage
-      - name: Test with coverage
+      - name: Test using pytest
+        run: |
+          pytest test_cases.py
+      - name: Code coverage using coverage.py
         run: |
           coverage run sample.py
           coverage lcov
-      - name: Coveralls
+      - name: Upload to coveralls
         uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
