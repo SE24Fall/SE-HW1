@@ -41,9 +41,9 @@ jobs:
           pytest test_cases.py hw2/test_cases.py
       - name: Static analysis using pyflakes, pylint and autopep8
         run: |
-        pyflakes hw2/hw2_debugging.py
-        pylint hw2/hw2_debugging.py
-        autopep8 hw2/hw2_debugging.py --aggressive --diff
+          pyflakes hw2/hw2_debugging.py
+          pylint hw2/hw2_debugging.py
+          autopep8 hw2/hw2_debugging.py --aggressive --diff
       - name: Code coverage using coverage.py
         if: success() || failure()
         run: |
