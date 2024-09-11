@@ -2,7 +2,6 @@
 Contains a function to merge sort an array
 """
 import rand
-import pdb
 
 
 def merge_sort(array):
