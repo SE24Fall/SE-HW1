@@ -2,6 +2,8 @@
 Contains a function to merge sort an array
 """
 import rand
+
+
 def merge_sort(array):
     """
     Function to sort an array by merge sort
@@ -9,9 +11,10 @@ def merge_sort(array):
     if len(array) == 1:
         return array
 
-    half = len(array)//2
+    half = len(array) // 2
 
     return recombine(merge_sort(array[:half]), merge_sort(array[half:]))
+
 
 def recombine(left_arr, right_arr):
     """
@@ -35,6 +38,7 @@ def recombine(left_arr, right_arr):
         merge_arr[left_index + right_index] = left_arr[i]
 
     return merge_arr
+
 
 arr = rand.random_array([None] * 20)
 arr_out = merge_sort(arr)
