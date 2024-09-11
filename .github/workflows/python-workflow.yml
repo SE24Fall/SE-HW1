@@ -40,6 +40,7 @@ jobs:
         run: |
           pytest test_cases.py hw2/test_cases_hw2.py
       - name: Static analysis using pyflakes, pylint and autopep8
+        if: success() || failure()
         run: |
           pyflakes hw2/hw2_debugging.py
           pylint hw2/hw2_debugging.py
