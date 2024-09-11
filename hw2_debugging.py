@@ -1,36 +1,42 @@
+"""
+Contains a function to merge sort an array
+"""
 import rand
+def merge_sort(array):
+    """
+    Function to sort an array by merge sort
+    """
+    if len(array) == 1:
+        return array
 
-def mergeSort(arr):
-    if (len(arr) == 1):
-        return arr
+    half = len(array)//2
 
-    half = len(arr)//2
+    return recombine(merge_sort(array[:half]), merge_sort(array[half:]))
 
-    return recombine(mergeSort(arr[:half]), mergeSort(arr[half:]))
-
-def recombine(leftArr, rightArr):
-    leftIndex = 0
-    rightIndex = 0
-    mergeArr = [None] * (len(leftArr) + len(rightArr))
-    while leftIndex < len(leftArr) and rightIndex < len(rightArr):
-        if leftArr[leftIndex] < rightArr[rightIndex]:
-            rightIndex += 1
-            mergeArr[leftIndex + rightIndex] = leftArr[leftIndex]
+def recombine(left_arr, right_arr):
+    """
+    Function to recombine arrays after sorting
+    """
+    left_index = 0
+    right_index = 0
+    merge_arr = [None] * (len(left_arr) + len(right_arr))
+    while left_index < len(left_arr) and right_index < len(right_arr):
+        if left_arr[left_index] < right_arr[right_index]:
+            right_index += 1
+            merge_arr[left_index + right_index] = left_arr[left_index]
         else:
-            leftIndex += 1
-            mergeArr[leftIndex + rightIndex] = rightArr[rightIndex]
+            left_index += 1
+            merge_arr[left_index + right_index] = right_arr[right_index]
 
-    for i in range(rightIndex, len(rightArr)):
-        mergeArr[leftIndex + rightIndex] = rightArr[i]
-    
-    for i in range(leftIndex, len(leftArr)):
-        mergeArr[leftIndex + rightIndex] = leftArr[i]
+    for i in range(right_index, len(right_arr)):
+        merge_arr[left_index + right_index] = right_arr[i]
 
-    return mergeArr
+    for i in range(left_index, len(left_arr)):
+        merge_arr[left_index + right_index] = left_arr[i]
+
+    return merge_arr
 
 arr = rand.random_array([None] * 20)
-arr_out = mergeSort(arr)
+arr_out = merge_sort(arr)
 
 print(arr_out)
-
-
