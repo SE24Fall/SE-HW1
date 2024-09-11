@@ -38,7 +38,7 @@ jobs:
           pip install pytest coverage pyflakes pylint autopep8
       - name: Test using pytest
         run: |
-          pytest test_cases.py hw2/test_cases.py
+          pytest test_cases.py hw2/test_cases_hw2.py
       - name: Static analysis using pyflakes, pylint and autopep8
         run: |
           pyflakes hw2/hw2_debugging.py
