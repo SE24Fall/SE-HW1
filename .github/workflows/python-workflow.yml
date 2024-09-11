@@ -6,6 +6,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   pull_request:
     branches: [ "main" ]
+  push:
+    branches: ["develop"]
 
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
@@ -33,10 +35,15 @@ jobs:
           python-version: '3.x'
       - name: Install dependencies
         run: |
-          pip install pytest coverage
+          pip install pytest coverage pyflakes pylint autopep8
       - name: Test using pytest
         run: |
-          pytest test_cases.py
+          pytest test_cases.py hw2/test_cases.py
+      - name: Static analysis using pyflakes, pylint and autopep8
+        run: |
+        pyflakes hw2/hw2_debugging.py
+        pylint hw2/hw2_debugging.py
+        autopep8 hw2/hw2_debugging.py --aggressive --diff
       - name: Code coverage using coverage.py
         if: success() || failure()
         run: |
