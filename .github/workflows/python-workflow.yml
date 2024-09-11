@@ -48,7 +48,7 @@ jobs:
       - name: Code coverage using coverage.py
         if: success() || failure()
         run: |
-          coverage run sample.py
+          coverage run sample.py hw2/hw2_debugging.py
           coverage lcov
       - name: Upload to coveralls
         if: success() || failure()
