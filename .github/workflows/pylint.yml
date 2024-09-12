@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: python-workflow
+name: pylint
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
@@ -35,24 +35,9 @@ jobs:
           python-version: '3.x'
       - name: Install dependencies
         run: |
-          pip install pytest coverage pyflakes pylint autopep8
-      - name: Test using pytest
-        run: |
-          pytest test_cases.py hw2/test_cases_hw2.py
-      # - name: Static analysis using pyflakes, pylint and autopep8
-      #   if: success() || failure()
-      #   run: |
-      #     pyflakes hw2/hw2_debugging.py
-      #     pylint hw2/hw2_debugging.py
-      #     autopep8 hw2/hw2_debugging.py --aggressive --diff
-      - name: Code coverage using coverage.py
+          pip install pylint 
+      - name: Static analysis using pylint 
         if: success() || failure()
-        run: |
-          coverage run sample.py hw2/hw2_debugging.py
-          coverage lcov
-      - name: Upload to coveralls
-        if: success() || failure()
-        uses: coverallsapp/github-action@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          file: coverage.lcov
+        run: |         
+          pylint hw2/hw2_debugging.py
+          pylint hw2/rand.py
