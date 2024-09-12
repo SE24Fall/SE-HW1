@@ -38,5 +38,6 @@ jobs:
           pip install pyflakes 
       - name: Static analysis using pyflakes 
         if: success() || failure()
-        run:          
+        run: |         
           pyflakes hw2/hw2_debugging.py
+          pyflakes hw2/rand.py
