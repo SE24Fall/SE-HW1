@@ -1,8 +1,16 @@
 #!/bin/bash
 
-csv_file="titanic.csv"
+awk -F',' 'NR > 1 {
+    if ($3 == 2 && substr($13, 1, 1) == "S") {
+        print $0
+    }
+}' titanic.csv | \
+sed 's/,male/,M/g; s/,female/,F/g' > temp.txt
 
-awk -F, '$3 == 2 && $12 == "S" {print $0}' "$csv_file" | \
-awk -F, '{gsub("male", "M", $5); gsub("female", "F", $5); print $0}' | \
-awk -F, '{if ($6 != "") age_sum += $6; count++} END {if (count > 0) print "Average Age:", age_sum / count; else print "No age data."}'
-
+awk -F',' '$7 != "" { total += $7; count++ } END { 
+    if (count > 0) {
+        print "Average Age:", total/count; 
+    } else { 
+        print "No valid passengers"; 
+    } 
+}' temp.txt
