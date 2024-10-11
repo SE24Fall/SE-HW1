@@ -1,4 +1,3 @@
 #!/bin/bash
-awk -F',' 'NR > 1 { if ($3 == 2 && substr($13, 1, 1) == "S") print $0 }' titanic.csv | 
-sed 's/,male/,M/g; s/,female/,F/g' | tee temp.txt | 
-awk -F',' '$7 != "" { total += $7; count++ } END { if (count > 0) print "Average Age:", total/count; else print "No valid passengers" }'
+
+cat titanic.csv | sed 's/,male/,M/ ; s/,female/,F/ ; s/\r$// ;' | grep -E 'S$' |  gawk -F, '$3 == 2 { print $0 } $7 != "" && $3 == 2 { total += $7; count++ } END { print "Average age:" total / count }'
