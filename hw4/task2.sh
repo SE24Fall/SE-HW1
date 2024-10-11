@@ -1,13 +1,7 @@
 #!/bin/bash
 
-dataset_dir="dataset1"
-
-find "$dataset_dir" -type f -name "file_*" | \
-xargs grep -l "sample" | \
-xargs grep -o "CSC510" | \
-sort | uniq -c | \
-awk '$1 >= 3 {print $2}' | \
-xargs -I {} sh -c 'echo "{}" $(wc -c < "{}")' | \
-sort -k2,2nr -k1,1 | \
-awk '{gsub("file_", "filtered_", $1); print $1}'
-
+grep -l "sample" dataset1/file* | 
+xargs -I {} sh -c 'count=$(grep -o "CSC510" {} | wc -l); if [ $count -ge 3 ]; then echo "{} has $count occurrences of CSC510"; fi' && grep -l "sample" dataset1/file* | 
+xargs -I {} sh -c 'count=$(grep -o "CSC510" {} | wc -l); if [ $count -ge 3 ]; then echo "{} $count"; fi' | 
+xargs -I {} sh -c 'file_name=$(echo {} | cut -d" " -f1); count=$(echo {} | cut -d" " -f2); size=$(stat -f %z $file_name); echo "$count $file_name $size"' | 
+sort -k1,1nr -k3,3n | sed 's/file_/filtered_/g'
